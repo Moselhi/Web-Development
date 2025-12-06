@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+html{
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+a {
+    text-decoration: none;
+}
+code {
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid #000;
+    background-color: #f4f4f4;
+    padding: 5px 10px;
+}
+li{
+    list-style: none;
+}
+.header{
+    background: linear-gradient(135deg,#f3e8ff,#ffffff);
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    z-index: 100;
+    padding: 0 20px;
+
+}
+.nav{
+    max-width: 1100px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.nav_logo{
+    margin-top: 15px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+
+}
+.btn{
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn:hover{
+    background-color: #333;
+}
+.nav_link:hover{
+    color: #d9d9d9;
+}
+.nav_item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    list-style: none;
+    column-gap: 25px;
+    margin: 0 10px;
+}
+.nav_item a{
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+.home{
+    display: flex;
+    
+    background-image: url(images/home_bkg.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+}
+.home_content{
+    max-width: 600px;
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 50px;
+    max-width: 1100px;
+    margin: auto;
+}
+.home_title{
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+}
+.home_description{
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+}
+.home_content .btn{
+    font-size: 18px;
+    padding: 12px 30px;
+}
+
+.student{
+    padding: 100px 20px;
+    width: 100%;
+    margin: auto;
+}
+.student{
+    width: 100%;
+    padding: 100px 20px;
+}
+.student .student-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    max-width: 1100px;
+    margin: auto;
+}
+.student .student-cards .student-card {
+    background-color: #f9f9f9;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.student .student-cards .student-card:hover {
+    transform: translateY(-10px);
+}
+.student .student-cards .student-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.student .student-cards .student-card .stn-name {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.about-us_section {
+    padding: 100px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+.about-us_section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    border-bottom: #000 2px solid;
+    display: inline-block;
+}
+.doctor {
+    padding: 5px 20px;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+}
+.doctor-card {
+    background-color: #f9f9f9;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    margin: auto;
+    display: inline-block;
+    justify-content: center;
+}
+.doctor-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.thankful {
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+.roadmap_section {
+    width: 100%;
+    padding: 100px 20px;
+
+}
+.roadmap{
+    border-top:2px solid #000;
+    max-width: 1100px;
+    margin: 150px auto;
+    border-bottom:2px solid #000;
+}
+.roadmap_list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+}
+.roadmap_list a {
+    color: #000;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 8px 12px;
+}
+.roadmap_item{
+    padding: 20px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+.roadmap_item:hover {
+    transform: translateX(10px);
+}
+.roadmap_title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+
+}
+.articles{
+    padding: 100px 20px;
+    width: 100%;
+    margin: auto;
+    max-width: 1100px;
+}
+.article{
+    display: inline-block;
+    padding: 100px 20px;
+    width: 100%;
+    margin: auto;
+}
+.article h2,h3{
+    display: inline-block;
+    text-align: center;
+    margin: 25px 0 15px 0;
+}
+#js,#backend,#git {
+    background-color: #f0f8ff;
+}
+footer {
+    background-color: #000;
+    padding: 20px 30px;
+    margin-top: 50px;
+}
+footer a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+footer a:hover {
+    color: #d9d9d9;
+}
+.footer {
+    font-size: 12px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+}
+/* login page */
