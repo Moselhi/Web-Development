@@ -18,26 +18,49 @@
 <h1>Users Management</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>user_name</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+  <tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>user_name</th>
+  <th>Email</th>
+  <th>Phone</th>
+  <th>City</th>
+  <th>Company</th>
+  <th>Actions</th>
+</tr>
   <tbody id="users-table-body"></tbody>
 </table>
-
 <h3>Add New User</h3>
 <form id="add-user-form">
   <input type="text" placeholder="Name" id="new-name" required>
   <input type="text" placeholder="user_name" id="new-username" required>
   <input type="email" placeholder="Email" id="new-email" required>
+  <input type="text" placeholder="Phone" id="new-phone">
+  <input type="text" placeholder="City" id="new-city">
+  <input type="text" placeholder="Company" id="new-company">
   <button type="submit">Add</button>
 </form>
-
+<iframe 
+    src="Data_Engineering_ERD_Schema.pdf" 
+    style="
+        width:60%; 
+        height:800px; 
+        border-radius:10px; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        border:none;
+        display:block;
+        margin: 200px auto;
+    ">
+</iframe>
+<img src="images/ERD.jpg" alt="ERD Schema" 
+    style="
+        width:60%; 
+        height:auto; 
+        border-radius:10px; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display:block;
+        margin: 50px auto;
+    ">
 <script>
 const tableBody = document.getElementById('users-table-body');
 let usersData = [];
@@ -58,15 +81,18 @@ function renderTable() {
   usersData.forEach((user, index) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${user.id}</td>
-      <td>${user.name}</td>
-      <td>${user.username}</td>
-      <td>${user.email}</td>
-      <td>
-        <button onclick="editUser(${user.id})">Edit</button>
-        <button onclick="deleteUser(${user.id})">Remove</button>
-      </td>
-    `;
+  <td>${user.id}</td>
+  <td>${user.name}</td>
+  <td>${user.username}</td>
+  <td>${user.email}</td>
+  <td>${user.phone || '-'}</td>
+  <td>${user.address?.city || '-'}</td>
+  <td>${user.company?.name || '-'}</td>
+  <td>
+    <button onclick="editUser(${user.id})">Edit</button>
+    <button onclick="deleteUser(${user.id})">Remove</button>
+  </td>
+`;
     tableBody.appendChild(tr);
   });
 }
@@ -80,13 +106,22 @@ function deleteUser(id) {
 // Edit user 
 function editUser(id) {
   const user = usersData.find(u => u.id === id);
+  
   const newName = prompt("New Name", user.name);
   const newUsername = prompt("New user_name", user.username);
   const newEmail = prompt("New Email", user.email);
+  const newPhone = prompt("New Phone", user.phone || '');
+  const newCity = prompt("New City", user.address?.city || '');
+  const newCompany = prompt("New Company", user.company?.name || '');
+  
   if(newName && newUsername && newEmail){
     user.name = newName;
     user.username = newUsername;
     user.email = newEmail;
+    user.phone = newPhone;
+    user.address = { ...user.address, city: newCity };
+    user.company = { ...user.company, name: newCompany };
+    
     renderTable();
   }
 }
@@ -96,11 +131,25 @@ const form = document.getElementById('add-user-form');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   const newUser = {
-    id: usersData.length ? usersData[usersData.length - 1].id + 1 : 1,
-    name: document.getElementById('new-name').value,
-    username: document.getElementById('new-username').value,
-    email: document.getElementById('new-email').value
-  };
+  id: usersData.length ? usersData[usersData.length - 1].id + 1 : 1,
+  name: document.getElementById('new-name').value,
+  username: document.getElementById('new-username').value,
+  email: document.getElementById('new-email').value,
+  phone: document.getElementById('new-phone').value,
+  address: {
+    street: '',
+    suite: '',
+    city: document.getElementById('new-city').value,
+    zipcode: '',
+    geo: { lat: '', lng: '' }
+  },
+  company: {
+    name: document.getElementById('new-company').value,
+    catchPhrase: '',
+    bs: ''
+  }
+};
+
   usersData.push(newUser);
   form.reset();
   renderTable();
