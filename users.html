@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة المستخدمين</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+  table { width: 100%; border-collapse: collapse; background: #fff; }
+  th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+  th { background: #eee; }
+  button { padding: 5px 10px; margin: 2px; }
+  form input { padding: 5px; margin-right: 10px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>Users Management</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>user_name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="users-table-body"></tbody>
+</table>
+
+<h3>Add New User</h3>
+<form id="add-user-form">
+  <input type="text" placeholder="Name" id="new-name" required>
+  <input type="text" placeholder="user_name" id="new-username" required>
+  <input type="email" placeholder="Email" id="new-email" required>
+  <button type="submit">Add</button>
+</form>
+
+<script>
+const tableBody = document.getElementById('users-table-body');
+let usersData = [];
+
+// Fetch users from API
+function fetchUsers() {
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(users => {
+      usersData = users;
+      renderTable();
+    });
+}
+
+// Display users in table
+function renderTable() {
+  tableBody.innerHTML = '';
+  usersData.forEach((user, index) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${user.id}</td>
+      <td>${user.name}</td>
+      <td>${user.username}</td>
+      <td>${user.email}</td>
+      <td>
+        <button onclick="editUser(${user.id})">Edit</button>
+        <button onclick="deleteUser(${user.id})">Remove</button>
+      </td>
+    `;
+    tableBody.appendChild(tr);
+  });
+}
+
+// Delete user
+function deleteUser(id) {
+  usersData = usersData.filter(u => u.id !== id);
+  renderTable();
+}
+
+// Edit user 
+function editUser(id) {
+  const user = usersData.find(u => u.id === id);
+  const newName = prompt("New Name", user.name);
+  const newUsername = prompt("New user_name", user.username);
+  const newEmail = prompt("New Email", user.email);
+  if(newName && newUsername && newEmail){
+    user.name = newName;
+    user.username = newUsername;
+    user.email = newEmail;
+    renderTable();
+  }
+}
+
+// Add new user
+const form = document.getElementById('add-user-form');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const newUser = {
+    id: usersData.length ? usersData[usersData.length - 1].id + 1 : 1,
+    name: document.getElementById('new-name').value,
+    username: document.getElementById('new-username').value,
+    email: document.getElementById('new-email').value
+  };
+  usersData.push(newUser);
+  form.reset();
+  renderTable();
+});
+
+// Initial fetch
+fetchUsers();
+</script>
+
+</body>
+</html>

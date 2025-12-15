@@ -118,7 +118,7 @@ li{
     width: 100%;
     margin: auto;
 }
-.student{
+.student , .doctor{
     width: 100%;
     padding: 100px 20px;
 }
@@ -129,7 +129,7 @@ li{
     max-width: 1100px;
     margin: auto;
 }
-.student .student-cards .student-card {
+.student .student-cards .student-card ,.doctor-card{
     background-color: #f9f9f9;
     width: 200px;
     border-radius: 10px;
@@ -138,19 +138,26 @@ li{
     text-align: center;
     transition: transform 0.3s ease;
 }
-.student .student-cards .student-card:hover {
+.student .student-cards .student-card:hover ,.doctor-card:hover {
     transform: translateY(-10px);
 }
-.student .student-cards .student-card img {
+.student .student-cards .student-card img, .doctor-card img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
 }
-.student .student-cards .student-card .stn-name {
+.stn-name{
     font-size: 15px;
     margin-bottom: 10px;
+}
+.doctor {
+    padding: 100px 20px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }
 .about-us_section {
     padding: 100px 20px;
@@ -162,32 +169,6 @@ li{
     margin-bottom: 20px;
     border-bottom: #000 2px solid;
     display: inline-block;
-}
-.doctor {
-    padding: 5px 20px;
-    width: 100%;
-    margin: auto;
-    justify-content: center;
-    display: flex;
-}
-.doctor-card {
-    background-color: #f9f9f9;
-    width: 250px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease;
-    margin: auto;
-    display: inline-block;
-    justify-content: center;
-}
-.doctor-card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
 }
 .thankful {
     font-size: 24px;
